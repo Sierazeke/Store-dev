@@ -35,12 +35,12 @@
         </tr>
         <?php foreach ($orders as $order): ?>
         <tr>
-            <td><?= htmlspecialchars($order['order_id']) ?></td>
-            <td><?= htmlspecialchars($order['customer_id']) ?></td>
-            <td><?= htmlspecialchars($order['order_date']) ?></td>
-            <td><?= htmlspecialchars($order['status']) ?></td>
-            <td><?= htmlspecialchars($order['comment'] ?? '') ?></td>
-            <td><?= htmlspecialchars($order['delivery_date'] ?? '') ?></td>
+            <td><?= htmlspecialchars($order->order_id) ?></td>
+            <td><?= htmlspecialchars($order->customer_id) ?></td>
+            <td><?= htmlspecialchars($order->order_date) ?></td>
+            <td><?= htmlspecialchars($order->status) ?></td>
+            <td><?= htmlspecialchars($order->comment ?? '') ?></td>
+            <td><?= htmlspecialchars($order->delivery_date ?? '') ?></td>
         </tr>
         <?php endforeach; ?>
     </table>

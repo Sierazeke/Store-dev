@@ -2,17 +2,39 @@
 
 class Order
 {
+    public int     $order_id;
+    public int     $customer_id;
+    public string  $order_date;
+    public string  $status;
+    public ?string $comment;
+    public ?string $delivery_date;
+
+    public function __construct(array $row)
+    {
+        $this->order_id      = $row['order_id'];
+        $this->customer_id   = $row['customer_id'];
+        $this->order_date    = $row['order_date'];
+        $this->status        = $row['status'];
+        $this->comment       = $row['comment'];
+        $this->delivery_date = $row['delivery_date'];
+    }
+
     public static function getAll(): array
     {
-        return DB::query('SELECT * FROM orders');
+        $rows = DB::query('SELECT * FROM orders');
+        return array_map(fn($row) => new self($row), $rows);
     }
 
     public static function getByStatus(string $status): array
     {
-        return DB::queryWithParams(
-            'SELECT * FROM orders WHERE status = ?',
-            [$status]
-        );
+        $rows = DB::queryWithParams('SELECT * FROM orders WHERE status = ?', [$status]);
+        return array_map(fn($row) => new self($row), $rows);
+    }
+
+    public static function getByCustomerId(int $customerId): array
+    {
+        $rows = DB::queryWithParams('SELECT * FROM orders WHERE customer_id = ?', [$customerId]);
+        return array_map(fn($row) => new self($row), $rows);
     }
 
     public static function getCount(): int

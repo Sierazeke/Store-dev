@@ -27,36 +27,32 @@
             <th>E-pasts</th>
             <th>Dzimšanas datums</th>
             <th>Punkti</th>
-            <?php if (isset($customers[0]['orders'])): ?>
+            <?php if (isset($customers[0]) && !empty($customers[0]->orders)): ?>
             <th>Pasūtījumi</th>
             <?php endif; ?>
         </tr>
         <?php foreach ($customers as $customer): ?>
         <tr>
-            <td><?= htmlspecialchars($customer['customer_id']) ?></td>
-            <td><?= htmlspecialchars($customer['first_name']) ?></td>
-            <td><?= htmlspecialchars($customer['last_name']) ?></td>
-            <td><?= htmlspecialchars($customer['email']) ?></td>
-            <td><?= htmlspecialchars($customer['birth_date']) ?></td>
-            <td><?= htmlspecialchars($customer['points']) ?></td>
-            <?php if (isset($customer['orders'])): ?>
+            <td><?= htmlspecialchars($customer->customer_id) ?></td>
+            <td><?= htmlspecialchars($customer->first_name) ?></td>
+            <td><?= htmlspecialchars($customer->last_name) ?></td>
+            <td><?= htmlspecialchars($customer->email) ?></td>
+            <td><?= htmlspecialchars($customer->birth_date) ?></td>
+            <td><?= htmlspecialchars($customer->points) ?></td>
+            <?php if (isset($customer->orders) && !empty($customer->orders)): ?>
             <td>
-                <?php if (empty($customer['orders'])): ?>
-                    <em>Nav pasūtījumu</em>
-                <?php else: ?>
-                    <ul>
-                        <?php foreach ($customer['orders'] as $order): ?>
-                        <li>
-                            #<?= htmlspecialchars($order['order_id']) ?>
-                            — <?= htmlspecialchars($order['order_date']) ?>
-                            — <?= htmlspecialchars($order['status']) ?>
-                            <?php if ($order['comment']): ?>
-                                (<?= htmlspecialchars($order['comment']) ?>)
-                            <?php endif; ?>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
+                <ul>
+                    <?php foreach ($customer->orders as $order): ?>
+                    <li>
+                        #<?= htmlspecialchars($order->order_id) ?>
+                        — <?= htmlspecialchars($order->order_date) ?>
+                        — <?= htmlspecialchars($order->status) ?>
+                        <?php if ($order->comment): ?>
+                            (<?= htmlspecialchars($order->comment) ?>)
+                        <?php endif; ?>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
             </td>
             <?php endif; ?>
         </tr>
