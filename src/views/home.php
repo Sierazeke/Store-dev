@@ -5,6 +5,9 @@
     <title>DevStore</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
+        nav { display: flex; gap: 16px; margin-bottom: 24px; }
+        nav a { text-decoration: none; color: #333; font-weight: 500; }
+        nav a:hover { color: #000; }
         .stats { display: flex; gap: 20px; margin-bottom: 30px; }
         .card { border: 1px solid #ccc; border-radius: 8px; padding: 20px 30px; text-align: center; }
         .card h2 { margin: 0; font-size: 36px; }
@@ -15,8 +18,8 @@
     </style>
 </head>
 <body>
+    <?php require __DIR__ . '/nav.php'; ?>
     <h1>DevStore</h1>
-
     <div class="stats">
         <div class="card">
             <h2><?= $customerCount ?></h2>
@@ -27,7 +30,6 @@
             <p>Pasūtījumi</p>
         </div>
     </div>
-
     <h2>Pasūtījumi pēc statusa</h2>
     <table>
         <tr>

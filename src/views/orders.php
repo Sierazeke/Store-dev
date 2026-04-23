@@ -5,6 +5,9 @@
     <title>Pasūtījumi</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
+        nav { display: flex; gap: 16px; margin-bottom: 24px; }
+        nav a { text-decoration: none; color: #333; font-weight: 500; }
+        nav a:hover { color: #000; }
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
         th { background-color: #f0f0f0; }
@@ -12,6 +15,7 @@
     </style>
 </head>
 <body>
+    <?php require __DIR__ . '/nav.php'; ?>
     <h1>Pasūtījumu saraksts</h1>
     <table>
         <tr>
