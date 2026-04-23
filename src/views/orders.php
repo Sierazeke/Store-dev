@@ -16,11 +16,13 @@
         .top h1 { margin: 0; }
         .btn { padding: 8px 14px; background: #222; color: #fff; text-decoration: none; border-radius: 4px; font-size: 14px; }
         .btn:hover { background: #444; }
+        .btn-delete { background: #e04040; border: none; cursor: pointer; font-size: 13px; padding: 6px 12px; color: #fff; border-radius: 4px; }
+        .btn-delete:hover { background: #aa0000; }
     </style>
 </head>
 <body>
     <?php require __DIR__ . '/nav.php'; ?>
-    <div class="top">
+    <div class="top">   
         <h1>Pasūtījumu saraksts</h1>
         <a href="/orders/create" class="btn">+ Jauns pasūtījums</a>
     </div>
@@ -32,6 +34,7 @@
             <th>Statuss</th>
             <th>Komentārs</th>
             <th>Piegādes datums</th>
+            <th>Darbības</th>
         </tr>
         <?php foreach ($orders as $order): ?>
         <tr>
@@ -41,6 +44,11 @@
             <td><?= htmlspecialchars($order->status) ?></td>
             <td><?= htmlspecialchars($order->comment ?? '') ?></td>
             <td><?= htmlspecialchars($order->delivery_date ?? '') ?></td>
+            <td>
+                <form method="POST" action="/orders/<?= $order->order_id ?>/delete">
+                    <button type="submit" class="btn-delete">Dzēst</button>
+                </form>
+            </td>
         </tr>
         <?php endforeach; ?>
     </table>

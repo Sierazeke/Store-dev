@@ -11,18 +11,14 @@ DB::connect();
 
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method     = $_SERVER['REQUEST_METHOD'];
+$segments   = explode('/', trim($requestUri, '/'));
 
-if (rtrim($requestUri, '/') === '') {
-    HomeController::index();
-} elseif (rtrim($requestUri, '/') === '/customers') {
-    CustomerController::index();
-} elseif ($requestUri === '/orders/create' && $method === 'GET') {
-    OrderController::create();
-} elseif (rtrim($requestUri, '/') === '/orders' && $method === 'POST') {
-    OrderController::store();
-} elseif (rtrim($requestUri, '/') === '/orders') {
-    OrderController::index();
-} else {
-    http_response_code(404);
-    echo '<h1>404 – Lapa nav atrasta</h1>';
-}
+match(true) {
+    $requestUri === '/'                                                                                          => HomeController::index(),
+    $requestUri === '/customers'        && $method === 'GET'                                                     => CustomerController::index(),
+    $requestUri === '/orders'           && $method === 'GET'                                                     => OrderController::index(),
+    $requestUri === '/orders/create'    && $method === 'GET'                                                     => OrderController::create(),
+    $requestUri === '/orders'           && $method === 'POST'                                                    => OrderController::store(),
+    $segments[0] === 'orders' && isset($segments[1], $segments[2]) && $segments[2] === 'delete' && $method === 'POST' => OrderController::delete((int)$segments[1]),
+    default                                                                                                      => (function() { http_response_code(404); echo '<h1>404 – Lapa nav atrasta</h1>'; })()
+};

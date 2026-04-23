@@ -52,13 +52,12 @@ class Order
     {
         DB::execute(
             'INSERT INTO orders (customer_id, order_date, status, comment, delivery_date) VALUES (?, ?, ?, ?, ?)',
-            [
-                $data['customer_id'],
-                $data['order_date'],
-                $data['status'],
-                $data['comment'] ?: null,
-                $data['delivery_date'] ?: null,
-            ]
+            [$data['customer_id'], $data['order_date'], $data['status'], $data['comment'] ?: null, $data['delivery_date'] ?: null]
         );
+    }
+
+    public static function delete(int $id): void
+    {
+        DB::execute('DELETE FROM orders WHERE order_id = ?', [$id]);
     }
 }
