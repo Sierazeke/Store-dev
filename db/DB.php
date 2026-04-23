@@ -6,12 +6,17 @@ class DB
 
     public static function connect(): void
     {
-        $host = '172.22.144.1';
-        $db   = 'store_dev';
-        $user = 'store_app';
-        $pass = 'password';
+        $lines = file(__DIR__ . '/../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            [$key, $value] = explode('=', $line, 2);
+            $_ENV[trim($key)] = trim($value);
+        }
 
-        self::$pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
+        self::$pdo = new PDO(
+            "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};charset=utf8mb4",
+            $_ENV['DB_USER'],
+            $_ENV['DB_PASS']
+        );
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
