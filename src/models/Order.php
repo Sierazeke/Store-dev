@@ -6,4 +6,12 @@ class Order
     {
         return DB::query('SELECT * FROM orders');
     }
+
+    public static function getByStatus(string $status): array
+    {
+        return DB::queryWithParams(
+            'SELECT * FROM orders WHERE status = ?',
+            [$status]
+        );
+    }
 }
