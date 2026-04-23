@@ -25,4 +25,11 @@ class DB
         $stmt = self::$pdo->query($sqlQuery);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function queryWithParams(string $sqlQuery, array $params): array
+{
+    $stmt = self::$pdo->prepare($sqlQuery);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }
