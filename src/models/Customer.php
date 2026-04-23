@@ -47,4 +47,9 @@ class Customer
             [$data['first_name'], $data['last_name'], $data['email'], $data['birth_date'], $data['points'] ?? 0]
         );
     }
+    public static function delete(int $id): void
+    {
+        DB::execute('DELETE FROM orders WHERE customer_id = ?', [$id]);
+        DB::execute('DELETE FROM customers WHERE customer_id = ?', [$id]);
+    }
 }

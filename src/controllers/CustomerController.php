@@ -20,4 +20,10 @@ class CustomerController
         header('Location: /customers');
         exit;
     }
+    public static function delete(int $id): void
+    {
+        Customer::delete($id);
+        header('Location: /customers');
+        exit;
+    }
 }
