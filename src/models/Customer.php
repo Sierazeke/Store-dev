@@ -40,4 +40,11 @@ class Customer
         $result = DB::query('SELECT COUNT(*) as count FROM customers');
         return (int) $result[0]['count'];
     }
+    public static function create(array $data): void
+    {
+        DB::execute(
+            'INSERT INTO customers (first_name, last_name, email, birth_date, points) VALUES (?, ?, ?, ?, ?)',
+            [$data['first_name'], $data['last_name'], $data['email'], $data['birth_date'], $data['points'] ?? 0]
+        );
+    }
 }

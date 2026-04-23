@@ -14,11 +14,13 @@ $method     = $_SERVER['REQUEST_METHOD'];
 $segments   = explode('/', trim($requestUri, '/'));
 
 match(true) {
-    $requestUri === '/'                                                                                          => HomeController::index(),
-    $requestUri === '/customers'        && $method === 'GET'                                                     => CustomerController::index(),
-    $requestUri === '/orders'           && $method === 'GET'                                                     => OrderController::index(),
-    $requestUri === '/orders/create'    && $method === 'GET'                                                     => OrderController::create(),
-    $requestUri === '/orders'           && $method === 'POST'                                                    => OrderController::store(),
+    $requestUri === '/'                                                                                               => HomeController::index(),
+    $requestUri === '/customers'        && $method === 'GET'                                                          => CustomerController::index(),
+    $requestUri === '/customers/create' && $method === 'GET'                                                          => CustomerController::create(),
+    $requestUri === '/customers'        && $method === 'POST'                                                         => CustomerController::store(),
+    $requestUri === '/orders'           && $method === 'GET'                                                          => OrderController::index(),
+    $requestUri === '/orders/create'    && $method === 'GET'                                                          => OrderController::create(),
+    $requestUri === '/orders'           && $method === 'POST'                                                         => OrderController::store(),
     $segments[0] === 'orders' && isset($segments[1], $segments[2]) && $segments[2] === 'delete' && $method === 'POST' => OrderController::delete((int)$segments[1]),
-    default                                                                                                      => (function() { http_response_code(404); echo '<h1>404 – Lapa nav atrasta</h1>'; })()
+    default                                                                                                           => (function() { http_response_code(404); echo '<h1>404 – Lapa nav atrasta</h1>'; })()
 };

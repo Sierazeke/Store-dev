@@ -18,7 +18,11 @@
 </head>
 <body>
     <?php require __DIR__ . '/nav.php'; ?>
-    <h1>Klientu saraksts</h1>
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+        <h1 style="margin: 0;">Klientu saraksts</h1>
+        <a href="/customers/create" style="padding: 8px 14px; background: #222; color: #fff; text-decoration: none; border-radius: 4px; font-size: 14px;">+ Jauns klients</a>
+    </div>
+
     <table>
         <tr>
             <th>ID</th>
