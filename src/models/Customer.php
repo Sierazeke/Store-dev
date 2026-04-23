@@ -18,10 +18,10 @@ class Customer
         }
         return $customers;
     }
-    
+
     public static function getCount(): int
     {
-    $result = DB::query('SELECT COUNT(*) as count FROM customers');
-    return (int) $result[0]['count'];
+        $result = DB::query('SELECT COUNT(*) as count FROM customers');
+        return (int) $result[0]['count'];
     }
 }

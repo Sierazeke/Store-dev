@@ -27,9 +27,15 @@ class DB
     }
 
     public static function queryWithParams(string $sqlQuery, array $params): array
-{
-    $stmt = self::$pdo->prepare($sqlQuery);
-    $stmt->execute($params);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    {
+        $stmt = self::$pdo->prepare($sqlQuery);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function execute(string $sqlQuery, array $params): void
+    {
+        $stmt = self::$pdo->prepare($sqlQuery);
+        $stmt->execute($params);
+    }
 }

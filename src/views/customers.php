@@ -5,9 +5,9 @@
     <title>Klienti</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
-        nav { display: flex; gap: 16px; margin-bottom: 24px; }
-        nav a { text-decoration: none; color: #333; font-weight: 500; }
-        nav a:hover { color: #000; }
+        nav { display: flex; gap: 16px; margin-bottom: 24px; background: #222; padding: 12px 20px; border-radius: 6px; }
+        nav a { text-decoration: none; color: #fff; font-weight: 500; }
+        nav a:hover { color: #aaa; }
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
         th { background-color: #f0f0f0; }

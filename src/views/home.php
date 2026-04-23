@@ -5,9 +5,9 @@
     <title>DevStore</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
-        nav { display: flex; gap: 16px; margin-bottom: 24px; }
-        nav a { text-decoration: none; color: #333; font-weight: 500; }
-        nav a:hover { color: #000; }
+        nav { display: flex; gap: 16px; margin-bottom: 24px; background: #222; padding: 12px 20px; border-radius: 6px; }
+        nav a { text-decoration: none; color: #fff; font-weight: 500; }
+        nav a:hover { color: #aaa; }
         .stats { display: flex; gap: 20px; margin-bottom: 30px; }
         .card { border: 1px solid #ccc; border-radius: 8px; padding: 20px 30px; text-align: center; }
         .card h2 { margin: 0; font-size: 36px; }

@@ -10,11 +10,16 @@ require __DIR__ . '/../src/controllers/OrderController.php';
 DB::connect();
 
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method     = $_SERVER['REQUEST_METHOD'];
 
 if (rtrim($requestUri, '/') === '') {
     HomeController::index();
 } elseif (rtrim($requestUri, '/') === '/customers') {
     CustomerController::index();
+} elseif ($requestUri === '/orders/create' && $method === 'GET') {
+    OrderController::create();
+} elseif (rtrim($requestUri, '/') === '/orders' && $method === 'POST') {
+    OrderController::store();
 } elseif (rtrim($requestUri, '/') === '/orders') {
     OrderController::index();
 } else {
